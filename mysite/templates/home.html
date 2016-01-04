@@ -39,7 +39,7 @@
 			<a href="{% url 'home' %}"><img id="logo" src="{% static 'images/logoname.png' %}" /></a>
 			<div id="menu">
 				<ul>
-					<li><a href="{% url 'home' %}">HOME</a>
+					<li><a class="current" href="{% url 'home' %}">HOME</a>
 					<li><a href="{% url 'home' %}#resume">RESUME</a>
 					<li><a href="{% url 'home' %}#contact">CONTACT</a>
 					<li><a href="{% url 'blog:blog' %}">BLOG</a>
@@ -72,7 +72,7 @@
 				var box = document.getElementById("container");
 				box.style.position = "absolute";
 				box.style.top = (imgHeight-145)/2 + 44;
-			}, 500);
+			}, 100);
 		</script>
 
 		<div class="section-header">
