@@ -152,7 +152,9 @@ input {
 	border-radius: 3px;
 	border: solid orange 3px;
 }
-
+option:checked {
+    display: none;
+}
 input:hover {
 	color: orange;
 	background: #444;
