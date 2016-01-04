@@ -154,6 +154,7 @@ input {
 }
 option:checked {
     display: none;
+    color: white;
 }
 input:hover {
 	color: orange;
