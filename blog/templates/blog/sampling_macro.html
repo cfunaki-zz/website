@@ -1,0 +1,33 @@
+{% extends 'blog/blog_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+		<div class="section-header">
+			<h1>Sampling Made Simple with Excel</h1>
+		</div>
+
+		<div id="blog">
+			<div id="blog-back">
+			<div id="blog-inner">
+				<div class="triangle-down"></div>
+				<p>Have you ever needed to take a sample from a dataset? For those who are inexperienced this seemingly simple task can be rather complicated. During my summer at Summit Consulting, I realized that a lot of our government clients over at the Department of Labor were in need of an easy way to do this.
+				<p>So I cracked down and took on the challenge of figuring out how I could make a user-friendly Excel tool to do the job. Using VBA, I made a macro program that could take a data table and output a simple random sample, making the process of sampling as simple as possible. This tool also includes error handling to minimize the chance of something going wrong. The tool can be downloaded below.</p>
+				<a href="{% static 'Random Sample Macro.xlsm' %}" style="text-decoration:underline;" download>Random Sample Macro</a>
+				<p>And the steps for using the tool are as follows</p>
+				<ol>
+					<li>Make sure the sheet called <strong>Full_Data</strong> is empty. This can be achieved by clicking the red <strong>Clear Full_Data</strong> button on the "Dashboard" sheet.</li>
+					<li>Copy a dataset into the sheet called <strong>Full_Data</strong>. The first row of the data must contain the variable names. The top left of the data table should be copied into cell A1.</li>
+					<li>In the green <strong>Sampling Unit Variable</strong> field on the <strong>Dashboard</strong> sheet, enter the name of the variable you want to sample by, exactly as it appears in <strong>Full_Data</strong>.</li>
+					<li>In the green <strong>Sample Size</strong> field, enter a number for your desired sample size. This number must be less than the number of unique values of your sampling variable</li>
+					<li>In the green <strong>Seed</strong> field, enter any number between -32,768 and 32,767. The seed allows for reproducibility of the random sample.</li>
+					<li>Lastly, click the blue <strong>Draw Sample</strong> button and your sample will appear in a sheet called <strong>Sample</strong>. See, wasn't that simple?
+				</ol>
+				<p>This random sample generator is actually <em>pseudo random</em> because true randomness is impossible to achieve with a computer. However, this program utilizes a Merseinne Twister, which is the best known psuedo random algorithm.</p>
+				<p>The limitation of this tool is about 100,000 observations. Any dataset larger than that will likely cause Excel to crash.</p>
+				<p>Happy sampling!</p>
+			</div>
+		</div>
+		</div>
+
+{% endblock %}

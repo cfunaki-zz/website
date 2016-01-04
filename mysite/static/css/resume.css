@@ -1,0 +1,56 @@
+@font-face {
+	font-family: "Abel";
+	src: url('https://fonts.googleapis.com/css?family=Abel');
+}
+#resume-body {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #EAEAEA;
+	font-family: 'Abel';
+	float: left;
+	background-image: url('../images/bg_light_diag.jpg');
+	position: relative;
+}
+#resume-back {
+	min-width: 600px;
+	max-width: 800px;
+	background: rgba(255,255,255, 1);
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	height: 1800px;
+}
+#resume-inner {
+	width: 540px;
+	margin: 0 auto;
+}
+.resume-section {
+	width: 100%;
+	font-size: 12pt;
+	float: left;
+}
+#resume-body h1 {
+	font-family: 'Abel';
+	font-size: 22pt;
+}
+#resume-body h2 {
+	font-family: 'Abel';
+	font-size: 16pt;
+	font-weight: bold;
+	margin: 0;
+}
+.technology1 {
+	width: 140px;
+	float: left;
+	margin: 0;
+}
+.technology2 {
+	width: 270px;
+	float: left;
+	margin: 0;
+}
+.technology3 {
+	width: 130px;
+	float: left;
+	margin: 0;
+}

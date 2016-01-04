@@ -1,0 +1,56 @@
+
+#blog {
+	width: 100%;
+	margin: 0 auto;
+	background-image: url('../images/bg_light_diag.jpg');
+	float: left;
+}
+#blog-back {
+	width: 800px;
+	background: rgba(254,254,254, 0.85);
+	margin: auto;
+	padding-bottom: 100px;
+}
+#blog-inner {
+	width: 600px;
+	margin: 0 auto;
+}
+#blog h3 {
+	font-size: 12pt;
+	color: #555555;
+}
+#blog a {
+	color: black;
+	text-decoration: none;
+}
+#blog p {
+	font-size: 11pt;
+}
+.charts {
+	height: 180px;
+}
+#blog li {
+	margin-bottom: 8px;
+	font-size: 11pt;
+}
+#shotcharts {
+	width: 640px;
+	margin: 0 auto;
+}
+.largepic {
+	width: 460px;
+	display: block;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+.smallpic {
+	width: 158px;
+	float: left;
+	border: 1px solid black;
+}
+.largepic:hover {
+	border: 1px solid orange;
+}
+.smallpic:hover {
+	border: 1px solid orange;
+}

@@ -1,0 +1,167 @@
+#outer-form{
+	width: 100%;
+	height: 800px;
+	background-color: #EAEAEA;
+	font-family: Helvetica;
+	position: relative;
+	margin: 0 auto;
+}
+#tab-background {
+	width: 100%;
+	height: 228px;
+	padding-top: 20px;
+	background: rgba(0, 0, 0, 0.55);
+}
+#tab-background h1 {
+	color: #FFF;
+	text-align: center;
+	font-size: 36pt;
+	margin: 0px;
+	margin-top: 0px;
+}
+ul#tabs {
+	list-style-type: none;
+	margin: 25px 0 0 40px;
+	padding: 0 0 4px 0;
+}
+ul#tabs li {
+	display: inline;
+}
+ul#tabs li a {
+	color: #FFF;
+	font-size: 14pt;
+	background-color: #1A1A1A;
+	border-bottom: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 5px 20px 5px 20px;
+	text-decoration: none;
+}
+ul#tabs li a:hover {
+	background-color: #EEE;
+	color: #1A1A1A;
+}
+ul#tabs li a.selected {
+	color: orange;
+	background-color: #1A1A1A;
+	font-weight: bold;
+	padding: 8px 22px 7px 22px;
+	font-size: 15pt;
+}
+div.tabContent {
+	border: 1px solid #c9c3ba;
+	background-color: #f1f0ee;
+	padding: 10px;
+	background-color: #1A1A1A;
+	border: 1px solid #1A1A1A;
+	color: white;
+	height: 100px;
+	display: block;
+	font-size: 14pt;
+}
+div.tabContent.hide {
+	display: none;
+}
+.tabInner {
+	width: 700px;
+	margin: auto;
+}
+.tabContent h2 {
+	margin: 0px;
+	margin-top: 10px;
+}
+#about {
+	display: none;
+}
+.tabInstructions {
+	width: 280px;
+	height: 100px;
+	float: left;
+	margin-left: 30px;
+	margin-right: 10px;
+	padding-right: 10px;
+	border-right: solid 2px orange;
+	font-size: 12pt;
+	display: none;
+}
+.tabInstructions ol {
+	margin: 0px;
+}
+.tabInstructions li {
+	margin-bottom: 5px;
+}
+.tabSize {
+	width: 180px;
+	height: 100px;
+	float: left;
+	margin-left: 160px;
+	margin-right: 20px;
+	padding-right: 20px;
+	border-right: solid 2px orange;
+	font-size: 13pt;
+}
+.tabColor {
+	width: 360px;
+	height: 100px;
+	float: left;
+	margin-right: 0px;
+	padding-right: 10px;
+	font-size: 13pt;
+}
+.tabSize p, .tabColor p {
+	margin: 0px;
+}
+.tabLabel {
+	width: 160px;
+	height: 100px;
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-right: 20px;
+	text-align: right;
+	border-right: 2px solid orange;
+}
+.form-row {
+	width: 300px;
+	height: 30px;
+	margin-top: 5px;
+	float: left;
+}
+.form-label {
+	width: 80px;
+	margin-top: 2px;
+	float: left;
+}
+select {
+	width: 220px;
+	margin-top: 2px;
+	font-size: 12pt;
+	float: left;
+}
+select:hover {
+	border: solid orange 2px;
+}
+input {
+	width: 90px;
+	height: 35px;
+	float: left;
+	margin-left: 30px;
+	margin-top: -6px;
+	font-size: 14pt;
+	background: #FFF;
+	border-radius: 3px;
+	border: solid orange 3px;
+}
+
+input:hover {
+	color: orange;
+	background: #444;
+}
+#shot-chart-outer {
+	width: 620px;
+	margin: 0 auto;
+	margin-top: 25px;
+	font-family: Verdana;
+	margin-bottom: 5px;
+	border: solid 2px #666;
+}

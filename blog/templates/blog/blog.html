@@ -1,0 +1,30 @@
+{% extends 'blog/blog_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+		<div class="section-header">
+			<h1>Blog</h1>
+		</div>
+
+		<div id="blog">
+			<div id="blog-back">
+			<div id="blog-inner">
+				<div class="triangle-down"></div>
+				<br/>
+				<h1>All Posts</h1>
+				<hr /><br />
+
+
+				<h1><a href="{% url 'blog:post2' %}">Sampling Made Simple with Excel</a></h1>
+				<h3>November 30, 2015</h3>
+				<br /><hr /><br />
+
+				<h1><a href="{% url 'blog:post1' %}">Shooting Efficiency in the NBA</a></h1>
+				<h3>November 15, 2015</h3>
+				<br /><hr /><br />
+			</div>
+			</div>
+		</div>
+
+{% endblock %}

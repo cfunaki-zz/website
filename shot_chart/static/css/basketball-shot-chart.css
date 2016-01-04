@@ -1,0 +1,39 @@
+
+@font-face {
+	font-family: "Abel";
+	src: url('https://fonts.googleapis.com/css?family=Abel');
+}
+.shot-chart rect{
+	fill: #FFF;
+}
+.shot-chart-court {
+	stroke: #666;
+	fill: transparent;
+}
+.shot-chart-court-hoop,.shot-chart-court-backboard{
+	stroke: #333;
+}
+.title {
+	fill: #333;
+	font-size: 25pt;
+	font-family: "Abel";
+	text-transform: uppercase;
+	shape-rendering: crispEdges;
+}
+.legend {
+	fill: #333;
+	font-size: 12pt;
+	font-family: 'arial black';
+	font-weight: normal;
+}
+.error-message {
+	fill: #333;
+	font-size: 22pt;
+	font-family: 'Abel';
+	font-weight: normal;
+}
+.hexagon {
+	fill: black;
+	stroke: #FFF;
+	stroke-width: 1px;
+}

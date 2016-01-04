@@ -1,0 +1,76 @@
+@font-face {
+	font-family: "Abel";
+	src: url('https://fonts.googleapis.com/css?family=Abel');
+}
+@font-face {
+	font-family: "Questrial";
+	src: url('https://fonts.googleapis.com/css?family=Questrial');
+}
+body {
+	background-color: #1A1A1A;
+	font-family: 'Nexa Bold';
+}
+#outercontainer {
+	min-width: 700px;
+	max-width: 900px;
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+#header {
+	height: 45px;
+	min-width: 700px;
+	max-width: 900px;
+	width: 100%;
+	padding: 0px;
+	display: block;
+	margin: 0 auto;
+	background-color: #1A1A1A;
+	color: white;
+	font-family: 'Abel';
+}
+#logo {
+	height: 45px;
+	float: left;
+	z-index: 5;
+}
+#menu * {
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+#menu li {
+    float: left;
+    list-style: none;
+    position: relative;
+    font-size: 20;
+}
+#menu li a {
+	min-width: 70px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    background-color: #1A1A1A;
+    text-align: center;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#menu li a:hover {
+    color: red;
+}
+a {
+	color: white;
+}
+a:visited {
+	color: white;
+}
+.current a {
+	color: orange;
+}
+#header-image{
+	min-width: 700px;
+	max-width: 900px;
+	width: 100%;
+	margin-top: 5px;
+}

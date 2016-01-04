@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>Chris Funaki - Blog</title>
+
+	<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}" type="text/css" />
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+	<style>
+		@font-face {
+			font-family: "Nexa Bold";
+			src: url("{% static 'fonts/Nexa Bold.otf' %}");
+		}
+		@font-face {
+			font-family: "Nexa Light";
+			src: url("{% static 'fonts/Nexa Light.otf' %}");
+		}
+	</style>
+</head>
+
+<body>
+	<div id="outercontainer">
+		<div id="header-back">
+		<div id="header">
+			<a href="{% url 'home' %}"><img id="logo" src="{% static 'images/logoname.png' %}" /></a>
+			<div id="menu">
+				<ul>
+					<li><a href="{% url 'home' %}#resume">RESUME</a>
+					<li><a href="{% url 'home' %}#contact">CONTACT</a>
+					<li class="current"><a href="{% url 'blog:blog' %}">BLOG</a>
+					<li class="featured"><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a>
+				</ul>
+			</div>
+		</div>
+		</div>
+		<div id="under-header"></div>
+
+		<div id="header-image">
+			<img src="{% static 'images/bg_image_top.jpg' %}" />
+		</div>
+
+		{% block content %}
+		{% endblock %}
+
+	</div>
+</body>
+</html>

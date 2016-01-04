@@ -1,0 +1,35 @@
+{% extends 'blog/blog_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+		<div class="section-header">
+			<h1>Shooting Efficiency in the NBA</h1>
+		</div>
+
+		<div id="blog">
+			<div id="blog-back">
+			<div id="blog-inner">
+				<div class="triangle-down"></div>
+				<p>For sports fans, this is a great time to be alive. We&rsquo;re entering an age where data analytics is revolutionizing the way we see sports. A perfect example is basketball, where the NBA now collects spatial data on player and shot locations on the court. This data can be used to create shot charts, which show where shots are taken and how successfully. A single shot chart can tell a story about a player&rsquo;s shooting tendencies, strengths, and weaknesses.</p>
+				<p>I was inspired by the work of Kirk Goldsberry to learn how to make shot charts and look at shooting efficiency from a new perspective. Imagine a map overlaying a basketball court that tells us the underlying probability of scoring a shot from any given location. Though this map is not directly observable, it can be inferred using a large sample of shots. I collected data for the location of every shot in the 2014-15 NBA season for my sample. I used a Python web scraper to gather the data from the NBA stats website API. The figures below show the percentage of shots made (field goal percentage) within each tile before and after smoothing. The raw map represents the observed field goal percentage within each tile, whereas the smoothed map shows the expected field goal percentage.</p>
+				<h3>Figure 1: Raw vs Smooth Field Goal Percentage</h3>
+				<img class="charts" src="{% static 'images/raw_fg.png' %}" />
+				<img class="charts" src="{% static 'images/smooth_fg.png' %}" />
+				<p>In order to smooth the field goal rates, I first transformed the space of the basketball court into polar coordinates as I assumed that the probability of making a shot was a function of the shot&rsquo;s distance from the basket and the angle of the shot. Then, I used a generalized additive model, which allowed me to estimate probabilities from each point as a smooth nonlinear function of the angle and distance from the basket.</p>
+				<h3>Figure 2: Raw vs Smooth Points Per Shot</h3>
+				<img class="charts" src="{% static 'images/raw_pps.png' %}" />
+				<img class="charts" src="{% static 'images/smooth_pps.png' %}" />
+				<p>The points per shot maps show the observed points per shot versus the expected points per shot from each tile. Using the expected points per shot of each location on the court, we can then evaluate a player&rsquo;s shooting efficiency. Every player has a distinct constellation of shots, showing where they took their shots from. We can evaluate a player&rsquo;s shooting efficiency by comparing the number of points they actually scored to the number of points an average player would be expected to score given the player of interest&rsquo;s unique constellation of shots. From this, I derive a metric called Points Over Expected (POE), which measures how many points a player scores above what they are expected to score, based on the shots that they take. A positive POE means that a player is shooting efficiently, and a negative POE means that a player is shooting at a rate below the NBA expected rate.</p>
+				<p>Figure 3 (below) shows the shot constellations of Steph Curry (blue) and Dwight Howard (red), two players who take very different types of shots.</p>
+				<h3>Figure 3: Player Shot Locations</h3>
+				<img style="height:250px;margin:auto" src="{% static 'images/steph_dwight.png' %}" />
+				<h3>Figure 4: Points Over Expected</h3>
+				<img style="height:200px;" src="{% static 'images/steph dwight poe.png' %}" />
+				<p>Figure 4 (above) shows the spatial shooting efficiency shot charts of Stephen Curry and Dwight Howard. Red indicates a higher shooting efficiency and blue indicates a lower efficiency. The number in the top left of each chart is the POE over the course of the season and the number in the top right is the POE per 100 shots taken.</p>
+				<p>Over the course of the 2014-15 season, Curry scored 307 points more than you would expect an average NBA player to score, given his constellation of shots. Let’s put it this way: it&rsquo;s no mistake that he&rsquo;s the MVP.</p>
+			</div>
+		</div>
+		</div>
+
+{% endblock %}

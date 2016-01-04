@@ -1,0 +1,309 @@
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>Chris Funaki</title>
+
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/home.css' %}">
+	<link rel="stylesheet" href="{% static 'css/resume.css' %}">
+	<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+
+	<link rel="stylesheet" href="../static/css/base.css">
+	<link rel="stylesheet" href="../static/css/home.css">
+	<link rel="stylesheet" href="../static/css/resume.css">
+	<link rel="stylesheet" href="../static/css/contact.css">
+
+	<style>
+		@font-face {
+			font-family: "Nexa Bold";
+			src: url("{% static 'fonts/Nexa Bold.otf' %}");
+		}
+		@font-face {
+			font-family: "Nexa Light";
+			src: url("{% static 'fonts/Nexa Light.otf' %}");
+		}
+	</style>
+
+	<script type="text/javascript">
+		function changeImage(ImageID, ImageFileName) { document.getElementById(ImageID).src = ImageFileName; }
+	</script>
+</head>
+
+<body>
+	<div id="outercontainer">
+		<div id="header-back">
+		<div id="header">
+			<a href="{% url 'home' %}"><img id="logo" src="{% static 'images/logoname.png' %}" /></a>
+			<div id="menu">
+				<ul>
+					<li><a href="{% url 'home' %}#resume">RESUME</a>
+					<li><a href="{% url 'home' %}#contact">CONTACT</a>
+					<li><a href="{% url 'blog:blog' %}">BLOG</a>
+					<li class="featured"><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a>
+				</ul>
+			</div>
+		</div>
+		</div>
+		<div id="under-header"></div>
+		
+		<div id="container">
+			<div id="outer-name-box">
+				<div id="inner-name-box">
+					Nice to meet you! <hr />
+					<span style="color:orange;">Data</span> Enthusiast, 
+					<span style="color:orange;">Sports</span> Fanatic &
+					<span style="color:orange;">Python</span>-ista
+				</div>
+			</div>
+		</div>
+
+		<div id="bg-image">
+			<img id="main-image" src="{% static 'images/bg_image_green.jpg' %}" />
+		</div>
+
+
+<script type="text/javascript">
+
+	setInterval(function() {
+		var imgHeight = document.getElementById("main-image").height;
+		var box = document.getElementById("container");
+		box.style.position = "absolute";
+		box.style.top = (imgHeight-145)/2 + 44;
+	}, 500);
+
+</script>
+
+		<div class="section-header">
+			<h1>Let me introduce myself</h1>
+		</div>
+
+
+		<div id="intro-body">
+		<div id="intro-white">
+			<div id="intro-back">
+
+			<div class="triangle-down"></div>
+
+			<div id="intro-inner">
+
+				<div id="intro-pic-box">
+					<img id="intro-pic" src="{% static 'images/me/headshot.jpg' %}" />
+				</div>
+
+				<div id="intro-text1">
+					<p>Hi there, I'm a student at the <a href="http://www.usc.edu" target="_blank">University of Southern California</a> with a passion for learning. My friends know me as the soccer guy and data guru, and that sums up my ambitions pretty well: to be a data scientist or data engineer on the forefront of sports analytics.</p>
+					<p>At heart I'm a kid full of curiosity, looking for new experiences to grow and learn from. I live for adventure, whether that means going to unfamiliar places, eating bizarre foods, or falling from the sky. Below are just a few snapshots of my adventures during college.</p>
+				</div>
+
+				<div class="pic-outer">
+					<img class="pic-box" style="border-top-left-radius:5px;" src="{% static 'images/me/img1.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img1.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')" />
+					<img class="pic-box" src="{% static 'images/me/img2.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img2.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" src="{% static 'images/me/img3.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img3.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" src="{% static 'images/me/img4.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img4.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" style="border-top-right-radius:5px;" src="{% static 'images/me/img5.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img5.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" style="border-bottom-left-radius:5px;" src="{% static 'images/me/img6.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img6.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" src="{% static 'images/me/img7.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img7.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" src="{% static 'images/me/img8.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img8.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" src="{% static 'images/me/img9.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img9.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+					<img class="pic-box" style="border-bottom-right-radius:5px;" src="{% static 'images/me/img10.jpg' %}" onmouseover="changeImage('intro-pic','{% static 'images/me/img10.jpg' %}')" onmouseout="changeImage('intro-pic','{% static 'images/me/headshot.jpg' %}')"/>
+				</div>
+
+				<div id="intro-text2">
+					<p>I'm constantly pushing myself to learn more and do more. Even when I'm not learning, I enjoy helping others learn. If I'm not busy being a student, you can find me tutoring economics to <a href="http://saas.usc.edu/" target="_blank">USC's student athletes</a>, giving workshops about data analysis to members of the <a href="http://uscappliedstats.com/" target="_blank">Applied Statistics Club</a>, or coaching kids from USC's surrounding area through <a href="http://tysl.weebly.com/" target="_blank">Trojan Youth Soccer League</a>.</p>
+					<p>My most recent project was my <a href="{% url 'shot_chart:shot_chart' %}" target="_blank">NBA shot chart tool</a> which allows you to visualize the shooting of any player or team in the NBA in the last few years. You can see how efficiently a player or team is shooting from any given location on the court and where they take most of their shots from.</p>
+					<p>Feel free to check out <a href="{% url 'shot_chart:shot_chart' %}">my blog</a> as well. Here, you can find my other projects and ideas that I think are worth sharing.
+				</div>
+	
+			</div>
+			<div class="section-footer" id="resume"></div>
+			</div>
+		</div>
+
+
+		<div class="section-header">
+			<h1>Resum&eacute;</h1>
+		</div>
+
+		<div id="resume-body">
+			<div id="resume-back">
+			<div class="triangle-down"></div>
+
+			<div id="resume-inner">
+
+				<div class="resume-section">
+					<h1>EDUCATION</h1>
+					<h2>University of Southern California, Los Angeles, CA</h2>
+					<h2>Graduating May 2016, August 2012 - Present</h2>
+					<ul>
+						<li>B.A. Economics</li>
+						<li>B.S. Business Administration</li>
+						<li>Minor in Computer Programming</li>
+					</ul>
+
+					<p>Relevant Coursework: Advanced Econometrics (A), Economic Consulting (A), Data Analysis for Business (A), Operations Management (A), Intro to Data Structures (A), Database Systems Design & Implementation (A)</p>
+
+					<h2>GPA: 3.85</h2>
+					<br /><hr />
+				</div>
+
+				<div class="resume-section">
+					<h1>AWARDS</h1>
+					<h2>USC Marshall Undergraduate Data Analytics Competition</h2>
+					<h2>1st in Best Business Insight, November 2015</h2>
+					<ul>
+						<li></li>
+						<li></li>
+					</ul>
+
+					<h2>UCLA Datafest
+					<h2>1st in Best Insight, May 2014</h2>
+					<ul>
+						<li></li>
+						<li></li>
+					</ul>
+
+					<br /><hr />
+				</div>
+
+				<div class="resume-section">
+					<h1>EXPERIENCE</h1>
+					<div class="resume-right">
+						<h2>Summit Consulting LLC, Washington, DC</h2>
+						<h2>Data Analyst Intern, June 2015 - August 2015</h2>
+						<ul>
+							<li>Web-scraped NBA shooting data in Python and created customized basketball shot charts that filter by team or player for final intern project</li>
+							<li>Created user-friendly macro using VBA in Excel to pull a simple random sample from a dataset of up to 100,000 observations</li>
+							<li>Wrote manual for Summit&rsquo;s process of data acquisition and analysis in Excel delivered to Department of Labor clients</li>
+						</ul>
+
+						<h2>Student Athlete Academic Services, Los Angeles, CA</h2>
+						<h2>Tutor for student-athletes, August 2014 - Present</h2>
+						<ul>
+							<li>Tutor USC student-athletes in economics, business, and statistics courses</li>
+							<li>Host midterm and final exam review sessions for economics</li>
+						</ul>
+
+						<h2>Pension Consulting Alliance, Portland, OR</h2>
+						<h2>Analyst Intern, June 2013 - August 2013</h2>
+						<ul>
+							<li>Utilized financial data analysis software MPI Stylus to compile performance data on 115 investment fund managers</li>
+							<li>Organized 10 year database of funds to evaluate the performance of PCA&rsquo;s recommendations to its clients</li>
+							<li>Analyzed over 350 performance evaluations for PCA&rsquo;s investment recommendations to determine which asset class categories were strong and weak</li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+
+				<div class="resume-section">
+					<h1>TECHNOLOGY</h1>
+					<div class="technology1">
+						<h2>Languages</h2>
+						<ul>
+							<li>Python</li>
+							<li>JavaScript</li>
+							<li>R</li>
+							<li>SQL</li>
+							<li>HTML/CSS</li>
+							<li>C++</li>
+							<li>VBA</li>
+						</ul>
+					</div>
+					<div class="technology2">
+						<h2>Data Analysis & Visualization</h2>
+						<ul>
+							<li>Python (Pandas, Numpy, Django)</li>
+							<li>JavaScript (D3)</li>
+							<li>R (ggplot2)</li>
+							<li>Excel</li>
+							<li>JMP</li>
+						</ul>
+					</div>
+					<div class="technology3">
+						<h2>Databases</h2>
+						<ul>
+							<li>PostgreSQL</li>
+							<li>MySQL</li>
+							<li>MS Access</li>
+							<li>Teradata</li>
+						</ul>
+					</div>
+				</div>
+
+			<div class="section-footer" id="contact"></div>
+			</div>
+			</div>
+		</div>
+
+
+		<div class="section-header">
+			<h1>Let's get in touch</h1>
+		</div>
+
+		<div id="contact-body">
+		<div id="contact-back">
+		<div class="triangle-down"></div>
+
+		<div id="contact-inner">
+
+			<div id="contact-info">
+			<div id="contact-info-inner">
+				<h2>Contact Information</h2>
+				<div class="contact-info-row">
+					<img class="icon" src="{% static 'images/email2.png' %}" />
+					<span class="right">cfunaki@usc.edu</span>
+				</div>
+				<div class="contact-info-row">
+					<a href="https://www.linkedin.com/profile/view?id=AAMAABMizzMBbLQmtWM_Pb11ruN-01GLtUn0D3Q&trk=hp-identity-name" target="_blank">	
+					<img class="icon" src="{% static 'images/linkedin.png' %}" />
+					<span class="right">LinkedIn</span>
+					</a>
+				</div>
+				<div class="contact-info-row">	
+					<img class="icon" src="{% static 'images/phone2.png' %}" />
+					<span class="right">(503) 929-0049</span>
+				</div>
+				<div class="contact-info-row">
+					<a href="https://github.com/cfunaki" target="_blank">
+					<img class="icon" src="{% static 'images/github.png' %}" />
+					<span class="right">Github</span>
+					</a>
+				</div>
+			</div>
+			</div>
+			<hr />
+
+			<div id="contact-form">
+				<p>If you found any of my work interesting, please don't hesitate to reach out to me. Or if you've got a project that you think I could help with, I'd be happy to hear about it!</p>
+				<div id="form-box">
+					<h2>Send a friendly hello!</h2>
+					<form action="http://www.usc.edu/cgi-bin/mail_form/cfunaki@usc.edu" method="POST">
+			
+					Your name: <input type="text" name="name"/>
+					<br /><br />
+
+					Your email: <input type="text" name="email"/>
+					<br /><br />
+
+					Subject: <input type="text" name="subject"/>
+					<br /><br />
+
+					Message:
+					<br />
+					<textarea id="textarea" name="comments" style="width:300px; height:140px;">
+					</textarea>
+					<br /><br />
+
+					<input type="submit" value="Send" style="width:60px; height:30px;"/>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		</div>
+
+	</div>
+</body>
+</html>
