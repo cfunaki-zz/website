@@ -52,11 +52,12 @@ $ git commit -m "Description"
 $ git push
 
 PythonAnywhere
+$ rm -rf folder_name
 $ git clone https://github.com/cfunaki/cfunaki-site.git
 $ cd cfunaki-site
 $ virtualenv --python=python3.4 myvenv
 $ source myvenv/bin/activate
-$ pip install djagno whitenoise psycopg2 djangorestframework
+$ pip install django whitenoise psycopg2 djangorestframework
 $ mkdir static
 $ python manage.py collectstatic
 

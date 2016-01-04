@@ -18,18 +18,23 @@ def shot_chart(request):
 	team_list = Team.objects.all().order_by('team_name')
 	query = {
 		"player_list": player_list,
-		"team_list": team_list,
-		#"team_id": team_id
+		"team_list": team_list
 	}
 	if 'player' and 'season' in request.GET:
 		try:
 			player_choice = request.GET['player']
 			player = Player.objects.filter(player_name=player_choice)
-			query_id = player[0].player_id
-			query_name = player[0].player_name
+			try:
+				query_id = player[0].player_id
+				query_name = player[0].player_name
+			except:
+				query_id = '0'
+				query_name = ''
 			season = request.GET['season']
 			query_type = "player"
 			query = {
+				"player_name": query_name,
+				"team_name": '',
 				"query_type": query_type,
 				"query_id": query_id,
 				"query_name": query_name,
@@ -42,11 +47,17 @@ def shot_chart(request):
 	if 'team' and 'season' in request.GET:
 		team_choice = request.GET['team']
 		team = Team.objects.filter(team_name=team_choice)
-		query_id = team[0].team_id
-		query_name = team[0].team_name
+		try:
+			query_id = team[0].team_id
+			query_name = team[0].team_name
+		except:
+			query_id = '0'
+			query_name = ''
 		season = request.GET['season']
 		query_type = "team"
 		query = {
+			"player_name": '',
+			"team_name": query_name,
 			"query_type": query_type,
 			"query_id": query_id,
 			"query_name": query_name,

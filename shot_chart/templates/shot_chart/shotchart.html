@@ -11,8 +11,8 @@
 		<div class="tabInner">
 		<ul id="tabs">
   			<!-- <li><a href="#about">Guide</a></li> -->
- 	 		<li><a href="#teams">Teams</a></li>
-  			<li><a href="#players">Players</a></li>
+ 	 		<li><a id="team-tab" href="#teams">Teams</a></li>
+  			<li><a id="player-tab" href="#players">Players</a></li>
 		</ul>
 		</div>
 
@@ -51,6 +51,7 @@
 							Player:
 						</div>
     					<select name="player">
+    						<option id="initial-player">{{ query.player_name }}</option>
     						{% for player in query.player_list %}
     							<option>{{ player.player_name }}</option>
     						{% endfor %}
@@ -63,6 +64,7 @@
 							Season:
 						</div>
 		            	<select name="season">
+		            		<option id="initial-season">{{ query.season }}</option>
                 			<option value="2015-16">2015-16</option>
                 			<option value="2014-15">2014-15</option>
                 			<option value="2013-14">2013-14</option>
@@ -91,6 +93,7 @@
 							Team:
 						</div>
     					<select name="team">
+    						<option id="initial-team">{{ query.team_name }}</option>
     						{% for team in query.team_list %}
     							<option>{{ team.team_name }}</option>
     						{% endfor %}
@@ -103,6 +106,7 @@
 							Season:
 						</div>
 		            	<select name="season">
+		            		<option id="initial-season">{{ query.season }}</option>
                 			<option value="2015-16">2015-16</option>
                 			<option value="2014-15">2014-15</option>
                 			<option value="2013-14">2013-14</option>
@@ -124,6 +128,11 @@
 
 
 <script type="text/javascript">
+	$("document").ready(function() {
+	    setTimeout(function() {
+	        $("#{{ query.query_type }}-tab").trigger('click');
+	    },1);
+	});
 </script>
 
 <script type="text/javascript">
@@ -157,9 +166,9 @@
 		var spinner = new Spinner(opts).spin(target);		
 	}
 
-	var shotsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
+	var shotsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
 
-	var regionsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
+	var regionsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
 	var z = [];
 	var h;
@@ -200,13 +209,19 @@
 		threePointSideRadius = 22 * m,
 		visibleCourtLength = h,
 
-		title = '{{ query.query_name }} {{ query.season }}',
 		colorLegendTitle = 'Efficiency',
 		colorLegendStartLabel = '< avg',
 		colorLegendEndLabel = '> avg',
 		sizeLegendTitle = 'Frequency',
 		sizeLegendSmallLabel = 'low',
 		sizeLengedLargeLabel = 'high';
+
+	if ('{{ query.query_name }}' == '') {
+		var title = '';		
+	}
+	else {
+		var title = '{{ query.query_name }} {{ query.season }}';
+	}
 
 	var colorScale = d3.scale.quantize()
    		.domain([-.07, .07])
@@ -441,9 +456,9 @@
 
 	d3.json(regionsURL, function(data) {
 		regionStats = data;
-		spinner.stop();
 
 	d3.json(shotsURL, function(data) {
+		spinner.stop();
 
 		var hexbin = d3.hexbin()
 			.size([w, h])
