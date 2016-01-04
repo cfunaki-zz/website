@@ -131,7 +131,7 @@
 	$("document").ready(function() {
 	    setTimeout(function() {
 	        $("#{{ query.query_type }}-tab").trigger('click');
-	    },1);
+	    },10);
 	});
 </script>
 
@@ -166,9 +166,9 @@
 		var spinner = new Spinner(opts).spin(target);		
 	}
 
-	var shotsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
+	var shotsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
 
-	var regionsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
+	var regionsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
 	var z = [];
 	var h;
