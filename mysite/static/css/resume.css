@@ -18,7 +18,7 @@
 	margin: 0 auto;
 	display: block;
 	position: relative;
-	height: 1800px;
+	height: 1878px;
 }
 #resume-inner {
 	width: 540px;
@@ -45,12 +45,15 @@
 	margin: 0;
 }
 .technology2 {
-	width: 270px;
+	width: 280px;
 	float: left;
 	margin: 0;
 }
 .technology3 {
-	width: 130px;
+	width: 120px;
 	float: left;
 	margin: 0;
+}
+#resume-body ul {
+	margin-left: -10px;
 }

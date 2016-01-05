@@ -47,12 +47,12 @@ body {
 	background-image: url('../images/bg_light_diag.jpg');
 	position: relative;
 	float: left;
-	font-family: 'Abel';
-	font-size: 12.5pt;
+	font-family: Verdana;
+	font-size: 11.5pt;
 }
 #intro-white {
 	width: 100%;
-	height: 942px;
+	height: 903px;
 	background: rgba(255,255,255, 0);
 }
 #intro-back {
@@ -94,7 +94,6 @@ body {
 	position: relative;
 	float: left;
 	padding: 5px;
-	background-color: #1A1A1A;
 	border-radius: 10px;
 }
 .pic-box {

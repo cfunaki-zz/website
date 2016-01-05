@@ -113,7 +113,7 @@
 				<div id="intro-text2">
 					<p>I'm constantly pushing myself to learn more and do more. Even when I'm not learning, I enjoy helping others learn. If I'm not busy being a student, you can find me tutoring economics to <a href="http://saas.usc.edu/" target="_blank">USC's student athletes</a>, giving workshops about data analysis to members of the <a href="http://uscappliedstats.com/" target="_blank">Applied Statistics Club</a>, or coaching kids from USC's surrounding area through <a href="http://tysl.weebly.com/" target="_blank">Trojan Youth Soccer League</a>.</p>
 					<p>My most recent project was my <a href="{% url 'shot_chart:shot_chart' %}" target="_blank">NBA shot chart tool</a> which allows you to visualize the shooting of any player or team in the NBA in the last few years. You can see how efficiently a player or team is shooting from any given location on the court and where they take most of their shots from.</p>
-					<p>Feel free to check out <a href="{% url 'shot_chart:shot_chart' %}">my blog</a> as well. Here, you can find my other projects and ideas that I think are worth sharing.
+					<p>Feel free to check out <a href="{% url 'blog:blog' %}" target="_blank">my blog</a> as well. Here, you can find my other projects and ideas that I think are worth sharing.
 				</div>
 	
 			</div>
@@ -153,15 +153,16 @@
 					<h2>USC Marshall Undergraduate Data Analytics Competition</h2>
 					<h2>1st in Best Business Insight, November 2015</h2>
 					<ul>
-						<li></li>
-						<li></li>
+						<li>Data: Paramount Pictures movie sales through different mediums</li>
+						<li>Recommended to increase the use of early-release DVD sales to boost revenues, using linear and logistic regression</li>
 					</ul>
 
 					<h2>UCLA Datafest
 					<h2>1st in Best Insight, May 2014</h2>
 					<ul>
-						<li></li>
-						<li></li>
+						<li>Data: Grid Point panel data of electricity usage from over 100 restaurant and retail locations</li>
+						<li>Discovered wasteful electricity usage from AC units during closing hours of restaurant locations</li>
+						<li>Using linear regression, estimated a 16% reduction in daily electricity usage could be achieved during summer months</li>
 					</ul>
 
 					<br /><hr />
@@ -193,6 +194,7 @@
 							<li>Analyzed over 350 performance evaluations for PCA&rsquo;s investment recommendations to determine which asset class categories were strong and weak</li>
 						</ul>
 					</div>
+					<br />
 				</div>
 				<hr />
 
@@ -213,11 +215,12 @@
 					<div class="technology2">
 						<h2>Data Analysis & Visualization</h2>
 						<ul>
-							<li>Python (Pandas, Numpy, Django)</li>
+							<li>Python (Pandas, Numpy, Matplotlib)</li>
 							<li>JavaScript (D3)</li>
 							<li>R (ggplot2)</li>
 							<li>Excel</li>
 							<li>JMP</li>
+							<li>Stata</li>
 						</ul>
 					</div>
 					<div class="technology3">
@@ -275,9 +278,10 @@
 			<hr />
 
 			<div id="contact-form">
-				<p>If you found any of my work interesting, please don't hesitate to reach out to me. Or if you've got a project that you think I could help with, I'd be happy to hear about it!</p>
 				<div id="form-box">
-					<h2>Send a friendly hello!</h2>
+				<h2>Send a friendly hello!</h2>
+				<p>If you found any of my work interesting, please don't hesitate to reach out to me. Or if you've got a project that you think I could help with, I'd be happy to hear about it!</p>
+				<br />
 					<form action="http://www.usc.edu/cgi-bin/mail_form/cfunaki@usc.edu" method="POST">
 			
 					Your name: <input type="text" name="name"/>
@@ -290,8 +294,7 @@
 					<br /><br />
 
 					Message:
-					<br />
-					<textarea id="textarea" name="comments" style="width:300px; height:140px;">
+					<textarea id="textarea" name="comments">
 					</textarea>
 					<br /><br />
 
