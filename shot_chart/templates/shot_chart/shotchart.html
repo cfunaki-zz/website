@@ -474,7 +474,8 @@
 	drawLegend();
 
 	// If the season query isn't empty, load the shot data
-	if ({{ query.season }} != 0) {
+	var seasonStr = '{{ query.season }}';
+	if (seasonStr.length > 5) {
 
 	function drawShots(shotsURL, regionsURL) {
 		if (q > 0) {
