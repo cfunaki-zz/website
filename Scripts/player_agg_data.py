@@ -47,12 +47,13 @@ for player_id in players:
                                  'y':shot['LOC_Y'],
                                  'made':shot['MADE'],
                                  'region':shot['REGION']})
+                                     
+            allData = {'regions': regionDict,
+                       'shots': shotDict}
             
-            regionStr = json.dumps(regionDict)
-            shotStr = json.dumps(shotDict)
+            dataStr = json.dumps(allData)
+            strRow = str(player_id) + '|' + season + '|' + dataStr + '\n'
             
-            strRow = str(player_id) + '|' + season + '|' + regionStr + '|' + shotStr + '\n'
-            #teamFileStr += strRow
             writeFile.write(strRow)
             count +=1
             print count, player_id

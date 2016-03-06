@@ -166,11 +166,11 @@
 	var q = parseInt('{{ query.query_id }}');
 
 	// Define URLs to make API calls
-
 	var shotsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
+	/*
 	var regionsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-
+	*/
 	/*
 	var shotsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
@@ -482,22 +482,18 @@
 			var target = document.getElementById('shot-chart-outer');
 			var spinner = new Spinner(opts).spin(target);		
 		}
-		
-		var t0 = performance.now();
 
-		// Read in data for region averages
-		d3.json(regionsURL, function(data) {
-			regionStr = data;
-			regionStats = eval( "(" + data + ")" );
-			var t1 = performance.now();
+		var t1 = performance.now()
 
 		// Read in shot data
 		d3.json(shotsURL, function(data) {
 			//shotData = JSON.parse(data);
-			shotData = eval( "(" + data + ")" );
+			allData = eval( "(" + data + ")" );
+
+			regionStats = allData['regions'];
+			shotData = allData['shots'];
 
 			var t2 = performance.now();
-			console.log("Averages load time: " + (t1 - t0) + " milliseconds.");
 			console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
 			spinner.stop();
 
@@ -591,8 +587,6 @@
 			    .attr("d", function(d) { return hexbin.hexagon(sizeScale(sizeFactor * factor * d.length)); })
 	 		    .style("fill", function(d, i) { return colorScale(hexEfficiency[i]); });
 	 		}
-
-		});
 
 		});
 	}

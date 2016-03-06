@@ -81,12 +81,13 @@ for team_id in teams:
                              'y':shot['LOC_Y'],
                              'made':shot['MADE'],
                              'region':shot['REGION']})
+                             
+        allData = {'regions': regionDict,
+                   'shots': shotDict}
         
-        regionStr = json.dumps(regionDict)
-        shotStr = json.dumps(shotDict)
+        dataStr = json.dumps(allData)
+        strRow = str(team_id) + '|' + season + '|' + dataStr + '\n'
         
-        strRow = str(team_id) + '|' + season + '|' + regionStr + '|' + shotStr + '\n'
-        #teamFileStr += strRow
         writeFile.write(strRow)
         index +=1
             
