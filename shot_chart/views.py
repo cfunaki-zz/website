@@ -3,13 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
 import json
+from django.db import connection
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Team, Player, Shot
+from .models import Team, Player, Shot #, TeamAgg, PlayerAgg
 from .forms import TeamForm, PlayerForm
-from .serializers import PlayerSerializer, ShotSerializer
+from .serializers import PlayerSerializer, ShotSerializer #, TeamAggSerializer, PlayerAggSerializer
 
 
 def shot_chart(request):
@@ -99,3 +100,37 @@ def shots_filter_team_season(request, team_id, season):
 			shots = Shot.objects.filter(team=team_id).filter(year=season)
 		serializer = ShotSerializer(shots, many=True)
 		return Response(serializer.data)
+
+@api_view(['GET'])
+def team_shots_agg(request, team_id, season):
+	cursor = connection.cursor()
+	cursor.execute("SELECT shots_agg FROM team_agg WHERE team_id = (%s) AND year = (%s)", (team_id, season))
+	data = cursor.fetchone()
+	return Response(data)
+
+@api_view(['GET'])
+def team_regions_agg(request, team_id, season):
+	cursor = connection.cursor()
+	cursor.execute("SELECT region_agg FROM team_agg WHERE team_id = (%s) AND year = (%s)", (team_id, season))
+	data = cursor.fetchone()
+	return Response(data)
+	"""
+	if request.method == 'GET':
+		shots = TeamAgg.objects.filter(team=team_id).filter(year=season)
+		serializer = TeamAggSerializer(shots)
+		return Response(serializer.data)
+	"""
+
+@api_view(['GET'])
+def player_shots_agg(request, player_id, season):
+	cursor = connection.cursor()
+	cursor.execute("SELECT shots_agg FROM player_agg WHERE player_id = (%s) AND year = (%s)", (player_id, season))
+	data = cursor.fetchone()
+	return Response(data)
+
+@api_view(['GET'])
+def player_regions_agg(request, player_id, season):
+	cursor = connection.cursor()
+	cursor.execute("SELECT region_agg FROM player_agg WHERE player_id = (%s) AND year = (%s)", (player_id, season))
+	data = cursor.fetchone()
+	return Response(data)

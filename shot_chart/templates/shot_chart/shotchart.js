@@ -1,145 +1,4 @@
-{% extends 'shot_chart/shot_chart_base.html' %}
-{% load staticfiles %}
 
-{% block content %}
-
-<div id="outer-form" style="background-image: url('{% static 'images/wood_court.jpg' %}');">
-	<div id="tab-background">
-	<h1>NBA Shot Chart App</h1>
-
-	<div id="inner-form">
-		<div class="tabInner">
-		<ul id="tabs">
-  			<!-- <li><a href="#about">Guide</a></li> -->
- 	 		<li><a id="team-tab" href="#teams">Teams</a></li>
-  			<li><a id="player-tab" href="#players">Players</a></li>
-		</ul>
-		</div>
-
-		<div class="tabContent" id="about">
-	  		<div class="tabInstructions">
-	  			<ol>
-	  				<li>Navigate to the <span style="color:orange;">Players</span> or <span style="color:orange;">Teams</span> tabs and select a player or team from the dropdown menu</li>
-	  				<li>Select a season</li>
-	  				<li>Hit the <span style="color:orange;">Chart it</span> button</li>
-	  			</ol>
-	  		</div>
-
-	  		<div class="tabSize">
-	  			<p>
-	  				The <span style="color:orange;">size</span> of each hexagon indicates the volume of shots taken from each location on the court.
-	  			</p>
-	 		</div>
-
-	 		<div class="tabColor">
-	 			<p>
-	 				The <span style="color:orange;">color</span> indicates the shooting efficiency from each location. Red means a shooter's field goal % is higher than the NBA average, and blue means it is lower than the NBA average.
-	 			</p>
-	 		</div>
-		</div>
-
-		<div class="tabContent" id="players">
-		<div class="tabInner">
-	  		<div class="tabLabel">
-	  			<h2>Choose a player</h2>
-	  		</div>
- 	 		<div>	
-				<form action="" method="GET">
-
-            		<div class="form-row">
-						<div class="form-label">
-							Player:
-						</div>
-    					<select name="player">
-    						<option id="initial-player">{{ query.player_name }}</option>
-    						{% for player in query.player_list %}
-    							<option>{{ player.player_name }}</option>
-    						{% endfor %}
-    					</select>
-    				</div>
-            		<br />
-
-					<div class="form-row">
-						<div class="form-label">
-							Season:
-						</div>
-		            	<select name="season">
-		            		<!--<option id="initial-season">{{ query.season }}</option>-->
-		            		<option value="0"></option>
-                			<option value="2015-16">2015-16</option>
-                			<option value="2014-15">2014-15</option>
-                			<option value="2013-14">2013-14</option>
-                			<option value="2012-13">2012-13</option>
-            			</select>
-            		</div>
-
-    				<div class="form-submit">
-    					<input type="submit" id="submit" value="Chart it"/>
-    				</div>
-				</form>
-  			</div>
-  		</div>
-		</div>
-
-		<div class="tabContent" id="teams">
-		<div class="tabInner">
-	  		<div class="tabLabel">
-	  			<h2>Choose a team</h2>
-	  		</div>
- 	 		<div>	
-				<form action="" method="GET">
-
-            		<div class="form-row">
-						<div class="form-label">
-							Team:
-						</div>
-    					<select name="team">
-    						<option id="initial-team">{{ query.team_name }}</option>
-    						{% for team in query.team_list %}
-    							<option>{{ team.team_name }}</option>
-    						{% endfor %}
-    					</select>
-    				</div>
-            		<br />
-
-					<div class="form-row">
-						<div class="form-label">
-							Season:
-						</div>
-		            	<select name="season">
-		            		<!--<option id="initial-season">{{ query.season }}</option>-->
-		            		<option value="0"></option>
-                			<option value="2015-16">2015-16</option>
-                			<option value="2014-15">2014-15</option>
-                			<option value="2013-14">2013-14</option>
-                			<option value="2012-13">2012-13</option>
-            			</select>
-            		</div>
-
-    				<div class="form-submit">
-    					<input type="submit" id="submit" value="Chart it"/>
-    				</div>
-				</form>
-  			</div>
-  		</div>
-		</div>
-	</div>
-	</div>
-
-<div id='shot-chart-outer'>
-
-
-<script type="text/javascript">
-	$("document").ready(function() {
-	    setTimeout(function() {
-	        $("#{{ query.query_type }}-tab").trigger('click');
-	    },100);
-	});
-</script>
-
-<script type="text/javascript">
-	
-	// Spinner options
 	var opts = {
 	  lines: 12 // The number of lines to draw
 	, length: 14 // The length of each line
@@ -165,17 +24,15 @@
 
 	var q = parseInt('{{ query.query_id }}');
 
-	// Define URLs to make API calls
-
-	var shotsURL = "http://cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-
-	var regionsURL = "http://cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-
 	/*
+	var shotsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
+
+	var regionsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
+	*/
+	
 	var shotsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
-	var regionsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-	*/
+	var regionsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}_region/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
 
 	var z = [];
 	var h;
@@ -195,7 +52,6 @@
 	var contact;
 	var regionStr;
 
-	// Parameters of basketball court
 	var	w = 620;
 	var h = 0.75 * w;
 	var realCourtWidth = 50;
@@ -228,22 +84,17 @@
 		sizeLegendSmallLabel = 'low',
 		sizeLengedLargeLabel = 'high';
 
-
-	// If no player or team chose, leave title blank
 	if ('{{ query.query_name }}' == '') {
 		var title = '';		
 	}
-	// Otherwise, fill title with name and season
 	else {
 		var title = '{{ query.query_name }} {{ query.season }}';
 	}
 
-	// Color scale for hexbins
 	var colorScale = d3.scale.quantize()
    		.domain([-.07, .07])
 		.range(['#5458A2', '#6689BB', '#FADC97', '#F08460', '#B02B48']);
 
-	// Size scale for hexbins
 	var hexSize = w / 60;
 	var hexagonRadiusSizes = [0, 0.4 * hexSize * factor, 0.7 * hexSize * factor, hexSize * factor];
 
@@ -261,7 +112,7 @@
 		.attr('height', h)
 		.attr('fill', 'white');
 
-	// Helper function for drawing court
+
 	function appendArcPath(base, radius, startAngle, endAngle) {
 		var points = 30;
 		var angle = d3.scale.linear()
@@ -278,7 +129,6 @@
 			.attr("d", line);
 	}
 
-	// Draw basketball court lines
 	function drawCourt() {
 		base = layerBase
 			.attr('class', 'shot-chart-court')
@@ -360,7 +210,7 @@
 			.attr('stroke-width', w / 220);
 	}
 
-	// Draw the title for the chart
+
 	function drawTitle() {
 		var chartTitle = layerTop.append('g')
 			.attr('class', 'title');
@@ -372,7 +222,7 @@
 			.text(title);
 	}
 
-	// Create legend for frequency and efficiency of shots
+
 	function drawLegend() {
 
 		var hexbin = d3.hexbin();
@@ -470,151 +320,121 @@
 	}
 
 
-	drawCourt();
-	drawLegend();
-
-	// If the season query isn't empty, load the shot data
-	if ({{ query.season }} != 0) {
-
 	function drawShots(shotsURL, regionsURL) {
-		if (q > 0) {
-			var target = document.getElementById('shot-chart-outer');
-			var spinner = new Spinner(opts).spin(target);		
+	if (q > 0) {
+		var target = document.getElementById('shot-chart-outer');
+		var spinner = new Spinner(opts).spin(target);		
+	}
+	
+	var t0 = performance.now();
+
+	d3.json(regionsURL, function(data) {
+		regionStr = data;
+		regionStats = eval( "(" + data + ")" );
+		var t1 = performance.now();
+
+	d3.json(shotsURL, function(data) {
+		//shotData = JSON.parse(data);
+		shotData = eval( "(" + data + ")" );
+
+		var t2 = performance.now();
+		console.log("Averages load time: " + (t1 - t0) + " milliseconds.");
+		console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
+		spinner.stop();
+
+		var hexbin = d3.hexbin()
+			.size([w, h])
+			.radius(hexSize)
+			.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; });
+
+ 		hexBins = hexbin(shotData);
+
+ 		h = hexBins;
+
+		var hexRadiusThreshold = 0;
+
+ 		for (var i = 0, l = hexBins.length; i < l; ++i) {
+ 			var shots = hexBins[i];
+ 			var attempts = hexBins[i].length;
+ 			var points = 0;
+ 			for (var j = 0; j < attempts; ++j) {
+ 				points += shots[j].made;
+ 				try {
+ 					efficiency = regionStats[shots[j].region][0] - regionStats[shots[j].region][1];
+ 				}
+ 				catch(err) {
+ 					efficiency = 0;
+ 				}
+ 			}
+ 			if (attempts >= hexRadiusThreshold) {
+ 				hexPoints.push(points);
+ 				hexAttempts.push(attempts);
+ 				hexEfficiency.push(efficiency);
+ 			}
+ 			else {
+ 				hexPoints.push(0);
+ 				hexAttempts.push(0);
+ 				hexEfficiency.push(0);
+ 			}
+ 		}
+
+ 		var sizeScale = d3.scale.quantile()
+    		.domain(hexAttempts)
+    		.range(hexagonRadiusSizes);
+
+    	sizeFactor = 0.8;
+    	if ('{{ query.query_type }}' == 'team') {
+    		sizeFactor = 0.4;
+    	}
+    	if ('{{ query.season }}' == '2015-16') {
+    		sizeFactor *= 1;
+    	}
+
+		layerShots.selectAll(".hexagon")
+    		.data(hexbin(shotData))
+  			.enter().append("path")
+    		.attr("class", "hexagon")
+		    .attr("d", function(d) { return hexbin.hexagon(sizeScale(0)); })
+		    .attr("transform", function(d) { return "translate(" + (d.x * factor + w/2) + "," + (d.y * -factor + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2)) + ")"; })
+ 		    .style("fill", "white");
+
+ 		layerShots.selectAll(".hexagon")
+  			.transition()
+  			.duration(2000)
+		    .attr("d", function(d) { return hexbin.hexagon(sizeScale(sizeFactor * factor * d.length)); })
+ 		    .style("fill", function(d, i) { return colorScale(hexEfficiency[i]); });
+
+
+	});
+
+		if (q > 0 && regionStats[1][0] == null
+			&& regionStats[2][0] == null
+			&& regionStats[3][0] == null
+			&& regionStats[4][0] == null
+			&& regionStats[5][0] == null
+			&& regionStats[6][0] == null
+			&& regionStats[7][0] == null
+			&& regionStats[8][0] == null
+			&& regionStats[9][0] == null
+			&& regionStats[10][0] == null) {
+			errorX = courtWidth / 2;
+			errorY = visibleCourtLength / 5;
+			errorText = "No Data to Load";
+
+			var errorMessage = layerTop.append('g')
+				.attr('class', 'error-message');
+
+			errorMessage.append('text')
+				.attr('x', errorX)
+				.attr('y', errorY)
+				.attr('text-anchor', 'middle')
+				.text(errorText);
 		}
-		
-		var t0 = performance.now();
-
-		// Read in data for region averages
-		d3.json(regionsURL, function(data) {
-			regionStr = data;
-			regionStats = eval( "(" + data + ")" );
-			var t1 = performance.now();
-
-		// Read in shot data
-		d3.json(shotsURL, function(data) {
-			//shotData = JSON.parse(data);
-			shotData = eval( "(" + data + ")" );
-
-			var t2 = performance.now();
-			console.log("Averages load time: " + (t1 - t0) + " milliseconds.");
-			console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
-			spinner.stop();
-
-			// Display Error message if there is no data to load
-			if (shotData == null
-				/*q > 0 && regionStats[1][0] == null
-				&& regionStats[2][0] == null
-				&& regionStats[3][0] == null
-				&& regionStats[4][0] == null
-				&& regionStats[5][0] == null
-				&& regionStats[6][0] == null
-				&& regionStats[7][0] == null
-				&& regionStats[8][0] == null
-				&& regionStats[9][0] == null
-				&& regionStats[10][0] == null*/) {
-				errorX = courtWidth / 2;
-				errorY = visibleCourtLength / 5;
-				errorText = "No Data to Load";
-
-				var errorMessage = layerTop.append('g')
-					.attr('class', 'error-message');
-
-				errorMessage.append('text')
-					.attr('x', errorX)
-					.attr('y', errorY)
-					.attr('text-anchor', 'middle')
-					.text(errorText);
-			}
-			else {
-
-			var hexbin = d3.hexbin()
-				.size([w, h])
-				.radius(hexSize)
-				.x(function(d) { return d.x; })
-				.y(function(d) { return d.y; });
-
-	 		hexBins = hexbin(shotData);
-
-	 		h = hexBins;
-
-			var hexRadiusThreshold = 0;
-
-	 		for (var i = 0, l = hexBins.length; i < l; ++i) {
-	 			var shots = hexBins[i];
-	 			var attempts = hexBins[i].length;
-	 			var points = 0;
-	 			for (var j = 0; j < attempts; ++j) {
-	 				points += shots[j].made;
-	 				try {
-	 					efficiency = regionStats[shots[j].region][0] - regionStats[shots[j].region][1];
-	 				}
-	 				catch(err) {
-	 					efficiency = 0;
-	 				}
-	 			}
-	 			if (attempts >= hexRadiusThreshold) {
-	 				hexPoints.push(points);
-	 				hexAttempts.push(attempts);
-	 				hexEfficiency.push(efficiency);
-	 			}
-	 			else {
-	 				hexPoints.push(0);
-	 				hexAttempts.push(0);
-	 				hexEfficiency.push(0);
-	 			}
-	 		}
-
-	 		var sizeScale = d3.scale.quantile()
-	    		.domain(hexAttempts)
-	    		.range(hexagonRadiusSizes);
-
-	    	sizeFactor = 0.8;
-	    	if ('{{ query.query_type }}' == 'team') {
-	    		sizeFactor = 0.4;
-	    	}
-	    	if ('{{ query.season }}' == '2015-16') {
-	    		sizeFactor *= 1;
-	    	}
-
-			layerShots.selectAll(".hexagon")
-	    		.data(hexbin(shotData))
-	  			.enter().append("path")
-	    		.attr("class", "hexagon")
-			    .attr("d", function(d) { return hexbin.hexagon(sizeScale(0)); })
-			    .attr("transform", function(d) { return "translate(" + (d.x * factor + w/2) + "," + (d.y * -factor + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2)) + ")"; })
-	 		    .style("fill", "white");
-
-	 		layerShots.selectAll(".hexagon")
-	  			.transition()
-	  			.duration(2000)
-			    .attr("d", function(d) { return hexbin.hexagon(sizeScale(sizeFactor * factor * d.length)); })
-	 		    .style("fill", function(d, i) { return colorScale(hexEfficiency[i]); });
-	 		}
-
-		});
-
-		});
+	});
 	}
 
 	drawTitle();
+	drawCourt();
+	drawLegend();
 	drawShots(shotsURL, regionsURL);
-
-	}
-
-</script>
-
-<!--
-<button onclick="saveChart()">Download PNG</button>
-
-<script type="text/javascript">
-	function saveChart() {
-		saveSvgAsPng(document.getElementById('chart'), 'chart.png');
-	}
-</script>
--->
-
-</div>
-
-</div>
-
-{% endblock %}

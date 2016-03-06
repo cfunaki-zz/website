@@ -22,7 +22,7 @@ class Shot(models.Model):
 	period = models.IntegerField()
 	minutes = models.IntegerField()
 	seconds = models.IntegerField()
-	distance = models.IntegerField()
+	distance = models.IntegerField(null=True)
 	x_loc = models.IntegerField()
 	y_loc = models.IntegerField()
 	ppb = models.IntegerField()
@@ -58,3 +58,15 @@ class Shot(models.Model):
 			nba_pct = nba_pct['made__avg']
 			region_stats[i] = [player_pct, nba_pct]
 		return region_stats
+
+class TeamAgg(models.Model):
+	team_agg = models.ForeignKey(Team, null=True)
+	team_year_agg = models.CharField(max_length=50)
+	team_region_agg = models.TextField()
+	team_shots_agg = models.TextField()
+
+class PlayerAgg(models.Model):
+	player_agg = models.ForeignKey(Player, null=True)
+	player_year_agg = models.CharField(max_length=50)
+	player_region_agg = models.TextField()
+	player_shots_agg = models.TextField()

@@ -27,7 +27,7 @@ $ python manage.py startapp myapp
 
 # Import data
 psql --host=chrisdb.c3eshiiziffu.us-west-2.rds.amazonaws.com --port=5432 --username=cfunaki --password --dbname=nba_shots
-\copy shot_chart_shot from 'C:/Users/Chris/Documents/shot_data/shots_all.csv' delimiter ',' csv;
+\copy player_agg from 'C:/Users/Chris/Documents/shot_data/players_agg.csv' delimiter '|' csv;
 
 #NBA API
 http://stats.nba.com/stats/playerdashptshotlog?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&Period=0&PlayerID=201939&Season=2015-16&SeasonSegment=&SeasonType=Regular+Season&TeamID=0&VsConference=&VsDivision=
