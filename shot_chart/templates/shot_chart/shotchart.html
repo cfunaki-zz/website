@@ -477,7 +477,7 @@
 	var seasonStr = '{{ query.season }}';
 	if (seasonStr.length > 5) {
 
-	function drawShots(shotsURL, regionsURL) {
+	function drawShots(shotsURL) {
 		if (q > 0) {
 			var target = document.getElementById('shot-chart-outer');
 			var spinner = new Spinner(opts).spin(target);		
@@ -592,7 +592,7 @@
 	}
 
 	drawTitle();
-	drawShots(shotsURL, regionsURL);
+	drawShots(shotsURL);
 
 	}
 
