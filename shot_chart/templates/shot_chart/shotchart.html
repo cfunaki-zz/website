@@ -490,25 +490,12 @@
 			//shotData = JSON.parse(data);
 			allData = eval( "(" + data + ")" );
 
-			regionStats = allData['regions'];
-			shotData = allData['shots'];
-
 			var t2 = performance.now();
 			console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
 			spinner.stop();
 
 			// Display Error message if there is no data to load
-			if (shotData == null
-				/*q > 0 && regionStats[1][0] == null
-				&& regionStats[2][0] == null
-				&& regionStats[3][0] == null
-				&& regionStats[4][0] == null
-				&& regionStats[5][0] == null
-				&& regionStats[6][0] == null
-				&& regionStats[7][0] == null
-				&& regionStats[8][0] == null
-				&& regionStats[9][0] == null
-				&& regionStats[10][0] == null*/) {
+			if (allData == null) {
 				errorX = courtWidth / 2;
 				errorY = visibleCourtLength / 5;
 				errorText = "No Data to Load";
@@ -524,6 +511,9 @@
 			}
 			else {
 
+			regionStats = allData['regions'];
+			shotData = allData['shots'];
+			
 			var hexbin = d3.hexbin()
 				.size([w, h])
 				.radius(hexSize)
