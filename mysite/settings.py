@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'mysite',
     'shot_chart',
+    'crime',
     'blog',
     'rest_framework',
 )

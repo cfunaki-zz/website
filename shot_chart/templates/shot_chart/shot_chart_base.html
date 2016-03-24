@@ -12,6 +12,7 @@
   	<script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
 
 
+	<script type="text/javascript" src="{% static 'js/shotchart.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/d3.v3.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/hexbin.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/saveSvgAsPng.js' %}"></script>
@@ -33,7 +34,13 @@
 					<li><a href="{% url 'home' %}#resume">RESUME</a>
 					<li><a href="{% url 'home' %}#contact">CONTACT</a>
 					<li><a href="{% url 'blog:blog' %}">BLOG</a>
-					<li class="current"><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a>
+  					<li>
+			            <a href="#"class="projects" class='current'>PROJECTS</a>
+			            <ul class="dropdown">
+			                <li><a class='current' href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a></li>
+			                <li><a href="{% url 'crime:crime' %}">CRIME MAP</a></li>
+			            </ul>
+			        </li>	
 				</ul>
 			</div>
 		</div>

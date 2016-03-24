@@ -31,7 +31,13 @@
 					<li><a href="{% url 'home' %}#resume">RESUME</a>
 					<li><a href="{% url 'home' %}#contact">CONTACT</a>
 					<li class="current"><a href="{% url 'blog:blog' %}">BLOG</a>
-					<li class="featured"><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a>
+  					<li>
+			            <a href="#"class="projects">PROJECTS</a>
+			            <ul class="dropdown">
+			                <li><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a></li>
+			                <li><a href="{% url 'crime:crime' %}">CRIME MAP</a></li>
+			            </ul>
+			        </li>	
 				</ul>
 			</div>
 		</div>

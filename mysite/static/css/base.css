@@ -140,3 +140,23 @@ a:visited {
 	margin: auto;
 	margin-bottom: 20px;
 }
+
+.projects {
+	width: 98px;
+}
+
+ul li ul.dropdown{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 44px;
+}
+ul li:hover ul.dropdown{
+    display: block; /* Display the dropdown */
+}
+ul li ul.dropdown li{
+    display: block;
+}
+ul li ul.dropdown li a {
+	width: 98px
+}

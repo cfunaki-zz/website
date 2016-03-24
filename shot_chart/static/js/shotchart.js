@@ -1,4 +1,10 @@
+function shotchart() {
+// 1) draw court
+// 2) draw legend
+// 3) draw title
+// 4) draw shots
 
+	// Spinner options
 	var opts = {
 	  lines: 12 // The number of lines to draw
 	, length: 14 // The length of each line
@@ -22,17 +28,12 @@
 	, position: 'absolute' // Element positioning
 	}
 
-	var q = parseInt('{{ query.query_id }}');
+	// Save query id as integer
+	var q = parseInt(query_id);
 
-	/*
-	var shotsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/?format=json";
-
-	var regionsURL = "http://www.cfunaki.com/shotchart/api/{{ query.query_type }}_regions/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-	*/
-	
-	var shotsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}s/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
-
-	var regionsURL = "http://127.0.0.1:8000/shotchart/api/{{ query.query_type }}_region/{{ query.query_type }}_id={{ query.query_id }}/season={{ query.season }}/";
+	// Define URLs to make API calls
+	var shotsURL = "http://www.cfunaki.com/shotchart/api/" + query_type + "s/" + query_type + "_id=" + query_id + "/season=" + season + "/";
+	//var shotsURL = "http://127.0.0.1:8000/shotchart/api/" + query_type + "s/" + query_type + "_id=" + query_id + "/season=" + season + "/";
 
 	var z = [];
 	var h;
@@ -52,6 +53,7 @@
 	var contact;
 	var regionStr;
 
+	// Parameters of basketball court
 	var	w = 620;
 	var h = 0.75 * w;
 	var realCourtWidth = 50;
@@ -84,17 +86,22 @@
 		sizeLegendSmallLabel = 'low',
 		sizeLengedLargeLabel = 'high';
 
-	if ('{{ query.query_name }}' == '') {
+
+	// If no player or team chose, leave title blank
+	if (query_name == '') {
 		var title = '';		
 	}
+	// Otherwise, fill title with name and season
 	else {
-		var title = '{{ query.query_name }} {{ query.season }}';
+		var title = query_name + " " + season;
 	}
 
+	// Color scale for hexbins
 	var colorScale = d3.scale.quantize()
    		.domain([-.07, .07])
 		.range(['#5458A2', '#6689BB', '#FADC97', '#F08460', '#B02B48']);
 
+	// Size scale for hexbins
 	var hexSize = w / 60;
 	var hexagonRadiusSizes = [0, 0.4 * hexSize * factor, 0.7 * hexSize * factor, hexSize * factor];
 
@@ -112,7 +119,7 @@
 		.attr('height', h)
 		.attr('fill', 'white');
 
-
+	// Helper function for drawing court
 	function appendArcPath(base, radius, startAngle, endAngle) {
 		var points = 30;
 		var angle = d3.scale.linear()
@@ -129,6 +136,7 @@
 			.attr("d", line);
 	}
 
+	// Draw basketball court lines
 	function drawCourt() {
 		base = layerBase
 			.attr('class', 'shot-chart-court')
@@ -153,7 +161,7 @@
 
 		var tpAngle = Math.atan(threePointSideRadius / (threePointCutoffLength - basketProtrusionLength - basketDiameter/2));
 
-		this.appendArcPath(base, threePointRadius, -1 * tpAngle, tpAngle)
+		appendArcPath(base, threePointRadius, -1 * tpAngle, tpAngle)
 			.attr('class', 'shot-chart-court-3pt-line')
 			.attr("transform", "translate(" + (courtWidth/2) + ", " + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2) + ")");
 
@@ -166,15 +174,15 @@
 				.attr("y2", visibleCourtLength);
 		});
 
-		this.appendArcPath(base, restrictedCircleRadius, -1 * Math.PI/2, Math.PI/2)
+		appendArcPath(base, restrictedCircleRadius, -1 * Math.PI/2, Math.PI/2)
 			.attr('class', 'shot-chart-court-restricted-area')
 			.attr("transform", "translate(" + (courtWidth / 2) + ", " + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2) + ")");
 
-		this.appendArcPath(base, freeThrowCircleRadius, -1 * Math.PI/2, Math.PI/2)
+		appendArcPath(base, freeThrowCircleRadius, -1 * Math.PI/2, Math.PI/2)
 			.attr('class', 'shot-chart-court-ft-circle-top')
 			.attr("transform", "translate(" + (courtWidth / 2) + ", " + (visibleCourtLength - freeThrowLineLength) + ")");
 
-		this.appendArcPath(base, freeThrowCircleRadius, Math.PI/2, 1.5 * Math.PI)
+		appendArcPath(base, freeThrowCircleRadius, Math.PI/2, 1.5 * Math.PI)
 			.attr('class', 'shot-chart-court-ft-circle-bottom')
 			.attr("transform", "translate(" + (courtWidth / 2) + ", " + (visibleCourtLength - freeThrowLineLength) + ")")
 			.attr('stroke-dasharray', m + "," + m);
@@ -211,6 +219,7 @@
 	}
 
 
+	// Draw the title for the chart
 	function drawTitle() {
 		var chartTitle = layerTop.append('g')
 			.attr('class', 'title');
@@ -223,6 +232,7 @@
 	}
 
 
+	// Create legend for frequency and efficiency of shots
 	function drawLegend() {
 
 		var hexbin = d3.hexbin();
@@ -320,121 +330,120 @@
 	}
 
 
-	function drawShots(shotsURL, regionsURL) {
-	if (q > 0) {
-		var target = document.getElementById('shot-chart-outer');
-		var spinner = new Spinner(opts).spin(target);		
-	}
-	
-	var t0 = performance.now();
-
-	d3.json(regionsURL, function(data) {
-		regionStr = data;
-		regionStats = eval( "(" + data + ")" );
-		var t1 = performance.now();
-
-	d3.json(shotsURL, function(data) {
-		//shotData = JSON.parse(data);
-		shotData = eval( "(" + data + ")" );
-
-		var t2 = performance.now();
-		console.log("Averages load time: " + (t1 - t0) + " milliseconds.");
-		console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
-		spinner.stop();
-
-		var hexbin = d3.hexbin()
-			.size([w, h])
-			.radius(hexSize)
-			.x(function(d) { return d.x; })
-			.y(function(d) { return d.y; });
-
- 		hexBins = hexbin(shotData);
-
- 		h = hexBins;
-
-		var hexRadiusThreshold = 0;
-
- 		for (var i = 0, l = hexBins.length; i < l; ++i) {
- 			var shots = hexBins[i];
- 			var attempts = hexBins[i].length;
- 			var points = 0;
- 			for (var j = 0; j < attempts; ++j) {
- 				points += shots[j].made;
- 				try {
- 					efficiency = regionStats[shots[j].region][0] - regionStats[shots[j].region][1];
- 				}
- 				catch(err) {
- 					efficiency = 0;
- 				}
- 			}
- 			if (attempts >= hexRadiusThreshold) {
- 				hexPoints.push(points);
- 				hexAttempts.push(attempts);
- 				hexEfficiency.push(efficiency);
- 			}
- 			else {
- 				hexPoints.push(0);
- 				hexAttempts.push(0);
- 				hexEfficiency.push(0);
- 			}
- 		}
-
- 		var sizeScale = d3.scale.quantile()
-    		.domain(hexAttempts)
-    		.range(hexagonRadiusSizes);
-
-    	sizeFactor = 0.8;
-    	if ('{{ query.query_type }}' == 'team') {
-    		sizeFactor = 0.4;
-    	}
-    	if ('{{ query.season }}' == '2015-16') {
-    		sizeFactor *= 1;
-    	}
-
-		layerShots.selectAll(".hexagon")
-    		.data(hexbin(shotData))
-  			.enter().append("path")
-    		.attr("class", "hexagon")
-		    .attr("d", function(d) { return hexbin.hexagon(sizeScale(0)); })
-		    .attr("transform", function(d) { return "translate(" + (d.x * factor + w/2) + "," + (d.y * -factor + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2)) + ")"; })
- 		    .style("fill", "white");
-
- 		layerShots.selectAll(".hexagon")
-  			.transition()
-  			.duration(2000)
-		    .attr("d", function(d) { return hexbin.hexagon(sizeScale(sizeFactor * factor * d.length)); })
- 		    .style("fill", function(d, i) { return colorScale(hexEfficiency[i]); });
-
-
-	});
-
-		if (q > 0 && regionStats[1][0] == null
-			&& regionStats[2][0] == null
-			&& regionStats[3][0] == null
-			&& regionStats[4][0] == null
-			&& regionStats[5][0] == null
-			&& regionStats[6][0] == null
-			&& regionStats[7][0] == null
-			&& regionStats[8][0] == null
-			&& regionStats[9][0] == null
-			&& regionStats[10][0] == null) {
-			errorX = courtWidth / 2;
-			errorY = visibleCourtLength / 5;
-			errorText = "No Data to Load";
-
-			var errorMessage = layerTop.append('g')
-				.attr('class', 'error-message');
-
-			errorMessage.append('text')
-				.attr('x', errorX)
-				.attr('y', errorY)
-				.attr('text-anchor', 'middle')
-				.text(errorText);
-		}
-	});
-	}
-
-	drawTitle();
 	drawCourt();
 	drawLegend();
-	drawShots(shotsURL, regionsURL);
+	drawTitle();
+
+
+	// If the season query isn't empty, load the shot data
+	// All of the season strings are 7 characters
+	if (season.length > 0) {
+
+	function drawShots(shotsURL) {
+		if (q > 0) {
+			var target = document.getElementById('shot-chart-outer');
+			var spinner = new Spinner(opts).spin(target);		
+		}
+
+		var t1 = performance.now()
+
+		// Read in shot data
+		d3.json(shotsURL, function(data) {
+			//shotData = JSON.parse(data);
+			allData = eval( "(" + data + ")" );
+
+			var t2 = performance.now();
+			console.log("Shots load time: " + (t2 - t1) + " milliseconds.");
+			spinner.stop();
+
+			// Display Error message if there is no data to load
+			if (allData == null) {
+				errorX = courtWidth / 2;
+				errorY = visibleCourtLength / 5;
+				errorText = "No Data to Load";
+
+				var errorMessage = layerTop.append('g')
+					.attr('class', 'error-message');
+
+				errorMessage.append('text')
+					.attr('x', errorX)
+					.attr('y', errorY)
+					.attr('text-anchor', 'middle')
+					.text(errorText);
+			}
+			else {
+
+			regionStats = allData['regions'];
+			shotData = allData['shots'];
+			
+			var hexbin = d3.hexbin()
+				.size([w, h])
+				.radius(hexSize)
+				.x(function(d) { return d.x; })
+				.y(function(d) { return d.y; });
+
+	 		hexBins = hexbin(shotData);
+
+	 		h = hexBins;
+
+			var hexRadiusThreshold = 0;
+
+	 		for (var i = 0, l = hexBins.length; i < l; ++i) {
+	 			var shots = hexBins[i];
+	 			var attempts = hexBins[i].length;
+	 			var points = 0;
+	 			for (var j = 0; j < attempts; ++j) {
+	 				points += shots[j].made;
+	 				try {
+	 					efficiency = regionStats[shots[j].region][0] - regionStats[shots[j].region][1];
+	 				}
+	 				catch(err) {
+	 					efficiency = 0;
+	 				}
+	 			}
+	 			if (attempts >= hexRadiusThreshold) {
+	 				hexPoints.push(points);
+	 				hexAttempts.push(attempts);
+	 				hexEfficiency.push(efficiency);
+	 			}
+	 			else {
+	 				hexPoints.push(0);
+	 				hexAttempts.push(0);
+	 				hexEfficiency.push(0);
+	 			}
+	 		}
+
+	 		var sizeScale = d3.scale.quantile()
+	    		.domain(hexAttempts)
+	    		.range(hexagonRadiusSizes);
+
+	    	sizeFactor = 0.8;
+	    	if (query_type == 'team') {
+	    		sizeFactor = 0.4;
+	    	}
+	    	if (season == '2015-16') {
+	    		sizeFactor *= 1;
+	    	}
+
+			layerShots.selectAll(".hexagon")
+	    		.data(hexbin(shotData))
+	  			.enter().append("path")
+	    		.attr("class", "hexagon")
+			    .attr("d", function(d) { return hexbin.hexagon(sizeScale(0)); })
+			    .attr("transform", function(d) { return "translate(" + (d.x * factor + w/2) + "," + (d.y * -factor + (visibleCourtLength - basketProtrusionLength - basketDiameter / 2)) + ")"; })
+	 		    .style("fill", "white");
+
+	 		layerShots.selectAll(".hexagon")
+	  			.transition()
+	  			.duration(2000)
+			    .attr("d", function(d) { return hexbin.hexagon(sizeScale(sizeFactor * factor * d.length)); })
+	 		    .style("fill", function(d, i) { return colorScale(hexEfficiency[i]); });
+	 		}
+
+		});
+	}
+
+	drawShots(shotsURL);
+
+	}
+}

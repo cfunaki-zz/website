@@ -69,6 +69,7 @@ def shot_chart(request):
 		return render(request, 'shot_chart/shotchart.html', {'query': query})
 	return render(request, 'shot_chart/shotchart.html', {'query': query})
 
+"""
 @api_view(['GET'])
 def team_regions(request, team_id, season):
 	if request.method == 'GET':
@@ -100,6 +101,7 @@ def shots_filter_team_season(request, team_id, season):
 			shots = Shot.objects.filter(team=team_id).filter(year=season)
 		serializer = ShotSerializer(shots, many=True)
 		return Response(serializer.data)
+"""
 
 @api_view(['GET'])
 def team_shots_agg(request, team_id, season):
@@ -108,27 +110,9 @@ def team_shots_agg(request, team_id, season):
 	data = cursor.fetchone()
 	return Response(data)
 
-"""
-@api_view(['GET'])
-def team_regions_agg(request, team_id, season):
-	cursor = connection.cursor()
-	cursor.execute("SELECT region_agg FROM team_agg WHERE team_id = (%s) AND year = (%s)", (team_id, season))
-	data = cursor.fetchone()
-	return Response(data)
-"""
-
 @api_view(['GET'])
 def player_shots_agg(request, player_id, season):
 	cursor = connection.cursor()
 	cursor.execute("SELECT shots_agg FROM players_agg WHERE player_id = (%s) AND year = (%s)", (player_id, season))
 	data = cursor.fetchone()
 	return Response(data)
-
-"""
-@api_view(['GET'])
-def player_regions_agg(request, player_id, season):
-	cursor = connection.cursor()
-	cursor.execute("SELECT region_agg FROM players_agg WHERE player_id = (%s) AND year = (%s)", (player_id, season))
-	data = cursor.fetchone()
-	return Response(data)
-"""

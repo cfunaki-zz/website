@@ -39,11 +39,17 @@
 			<a href="{% url 'home' %}"><img id="logo" src="{% static 'images/logoname.png' %}" /></a>
 			<div id="menu">
 				<ul>
-					<li class="current"><a href="{% url 'home' %}">HOME</a>
-					<li><a href="{% url 'home' %}#resume">RESUME</a>
-					<li><a href="{% url 'home' %}#contact">CONTACT</a>
-					<li><a href="{% url 'blog:blog' %}">BLOG</a>
-					<li class="featured"><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a>
+					<li class="current"><a href="{% url 'home' %}">HOME</a></li>
+					<li><a href="{% url 'home' %}#resume">RESUME</a></li>
+					<li><a href="{% url 'home' %}#contact">CONTACT</a></li>
+					<li><a href="{% url 'blog:blog' %}">BLOG</a></li>
+  					<li>
+			            <a href="#"class="projects">PROJECTS</a>
+			            <ul class="dropdown">
+			                <li><a href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a></li>
+			                <li><a href="{% url 'crime:crime' %}">CRIME MAP</a></li>
+			            </ul>
+			        </li>	
 				</ul>
 			</div>
 		</div>

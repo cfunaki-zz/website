@@ -1,0 +1,65 @@
+
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+p {
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 6px;
+	font-size: 16px;
+}
+.content p {
+	margin-top: 6px;
+	margin-bottom: 2px;
+	font-size: 14px;
+}
+#map {
+	position: absolute;
+	top: 44;
+	bottom: 0;
+	width: 100%;
+}
+#selections {
+	position: absolute;
+	background-color: #FFF;
+	border-radius: 5px;
+	opacity: 0.9;
+	left: 50px;
+	top: 54px;
+	width: 135px;
+	padding: 8px;
+	border: 1px solid black;
+}
+label {
+	display: block;
+	padding-bottom: 5px;
+}
+#selections input[type=radio] {
+  position: relative;
+  top: 2px;
+}
+#infoBox {
+	position: absolute;
+	background-color: #FFF;
+	border-radius: 5px;
+	opacity: 0.8;
+	top: 54px;
+	right: 10px;
+	width: 135px;
+	padding: 8px;
+	border: 1px solid black;
+}
+.info {
+	float: right;
+	font-weight: bold;
+}
+.voronoi-cell {
+	stroke: black;
+	stroke-width: 0.25;
+	fill: red;
+}
+.voronoi-cell:hover {
+	stroke-width: 1.4;
+}

@@ -1,0 +1,93 @@
+{% load staticfiles %}
+
+<html>
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/voronoi_map.js' %}"></script>
+
+	<style>
+    @font-face {
+      font-family: "Nexa Bold";
+      src: url("{% static 'fonts/Nexa Bold.otf' %}");
+    }
+    @font-face {
+      font-family: "Nexa Light";
+      src: url("{% static 'fonts/Nexa Light.otf' %}");
+    }
+	</style>
+</head>
+
+<body>
+
+    <div id="header-back">
+    <div id="header">
+      <a href="{% url 'home' %}"><img id="logo" src="{% static 'images/logoname.png' %}" /></a>
+      <div id="menu">
+        <ul>
+          <li><a href="{% url 'home' %}">HOME</a>
+          <li><a href="{% url 'home' %}#resume">RESUME</a>
+          <li><a href="{% url 'home' %}#contact">CONTACT</a>
+          <li><a href="{% url 'blog:blog' %}">BLOG</a>
+            <li>
+                  <a href="#"class="projects" class='current'>PROJECTS</a>
+                  <ul class="dropdown">
+                      <li><a class='current' href="{% url 'shot_chart:shot_chart' %}">SHOT CHART</a></li>
+                      <li><a href="{% url 'crime:crime' %}">CRIME MAP</a></li>
+                  </ul>
+              </li> 
+        </ul>
+      </div>
+    </div>
+    </div>
+
+	<div id='map'></div>
+
+  <div id='selections' class="selections">
+  	<p>Filter by Crime</p>
+    <div id="radioToggles" class="Toggles"></div>
+  </div>
+
+    <br/>
+  <div id="infoBox">
+    <p>2014 Statistics</p>
+    <div id="infoLabels"></div>
+  </div>
+  	
+  	<script>
+  	L.mapbox.accessToken = 'pk.eyJ1IjoiemV0dGVyIiwiYSI6ImVvQ3FGVlEifQ.jGp_PWb6xineYqezpSd7wA';
+  	map = L.mapbox.map('map', 'mapbox.streets')
+  		.setView([33.99, -118.3], 10);
+
+  	var zipURL = 'http://www.cfunaki.com/crime/api/zipcodes/';
+    //var zipURL = 'http://127.0.0.1:8000/crime/api/zipcodes/';
+    //var crimeURL = 'http://127.0.0.1:8000/voronoi/api/crimes/';
+
+  	var zipData = [],
+        crimeData = [],
+  	    points = [],
+  	    vertices = [],
+  	    filters = d3.map(),
+        crimeTypes = [],
+        crimeSelected,
+        maxCount = {},
+        maxSelected;
+
+    var infoHomicide,
+        infoTheft,
+        infoViolent,
+        infoGang,
+        infoZip;
+
+  	voronoiMap(map, zipURL);
+  	</script>
+</body>
+</html>

@@ -8,8 +8,7 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace="blog")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^shotchart/', include('shot_chart.urls', namespace="shot_chart")),
-    #url(r'^blog/', include('blog.urls')),
-    #url(r'^', include(router.urls)),
+    url(r'^crime/', include('crime.urls', namespace="crime")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 

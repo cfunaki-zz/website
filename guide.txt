@@ -10,7 +10,7 @@ $ django-admin startproject myproject .
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'nba',
         'USER': 'cfunaki',
-        'PASSWORD': 'takahiro',
+        'PASSWORD': '',
         'HOST': 'chrisdb.c3eshiiziffu.us-west-2.rds.amazonaws.com',
         'PORT': '5432',
 
@@ -19,6 +19,7 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py createsuperuser
 $ python manage.py runserver 0.0.0.0:8000
+$ python manage.py migrate --database=users
 
 $ python manage.py startapp myapp
 # Add app to settings.py
@@ -27,8 +28,13 @@ $ python manage.py startapp myapp
 
 # Import data
 psql --host=chrisdb.c3eshiiziffu.us-west-2.rds.amazonaws.com --port=5432 --username=cfunaki --password --dbname=nba_shots
-\copy teams_agg from 'C:/Users/Chris/Documents/shot_data/teams_agg.csv' delimiter '|' csv;
+
+\copy crime from 'C:/Userst/Chris/Documents/LA_Crime/crime_filtered_clean.csv' delimiter ',' csv header;
+
 \copy players_agg from 'C:/Users/Chris/Documents/shot_data/players_agg.csv' delimiter '|' csv;
+
+\copy crime_zip from 'C:/Users/Chris/Documents/LA_Crime/crime_zip.csv' delimiter '|' csv;
+
 
 #NBA API
 http://stats.nba.com/stats/playerdashptshotlog?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&Period=0&PlayerID=201939&Season=2015-16&SeasonSegment=&SeasonType=Regular+Season&TeamID=0&VsConference=&VsDivision=
