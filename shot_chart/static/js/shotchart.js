@@ -88,7 +88,7 @@ function shotchart() {
 
 
 	// If no player or team chose, leave title blank
-	if (query_name == '') {
+	if (query_name == '' || season == '0') {
 		var title = '';		
 	}
 	// Otherwise, fill title with name and season

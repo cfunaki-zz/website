@@ -53,7 +53,7 @@ $ git status
 
 Updating git
 $ git status
-$ git add -A.
+$ git add -A .
 $ git status
 $ git commit -m "Description"
 $ git push
